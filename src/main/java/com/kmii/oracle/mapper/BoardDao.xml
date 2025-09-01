@@ -8,7 +8,7 @@
     
     	<insert id="boardWriteDao">
     		INSERT INTO boardtbl(bnum, btitle, bcontent, bwriter, bhit)
-    		VALUES(boardseq, #{param1}, #{param2), #{param3},0)
+    		VALUES(boardseq, #{param1}, #{param2}, #{param3},0)
     	</insert>
     	
     	<!-- board:member 1:1 관계매핑 -->
@@ -32,7 +32,7 @@
     	</resultMap>  
     	
     	<!-- 모든 글 가져오기(멤버 정보 조인) -->
-    	<select id="userInfoMapDao" resultMap="userWithUserInfo">
+    	<select id="userInfoMapDao" resultMap="boardWithMember">
     		SELECT b.bnum, b.btitle, b.bcontent, b.bwriter, m.membername, b.bhit, b.bdate
     		FROM boardtbls b
     		INNER JOIN membertbl m ON b.bwriter = m.memberid

@@ -13,6 +13,6 @@ public class BoardDao {
 	public List<BoardDto> boardListDao();
 	
 	//게시판 모든 글 갯수
-	public AllBoardCountDao();
+	public int AllBoardCountDao();
 
 }
