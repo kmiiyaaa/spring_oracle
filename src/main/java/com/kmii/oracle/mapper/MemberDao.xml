@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kmii.oracle.dao.MemberDao">
+
+	<insert id="memberJoinDao">
+		INSERT INTO membertbl(membernum, memberid, memberpw, membername)
+			VALUES(MEMBERESQ.nextval, #{param1}, #{param2}, #{param3})
+	</insert>	
+	
+	<select id="memberidCheckDao" resultType="int">
+		SELECT COUNT(*) FROM membertbl WHERE memberid = #{param1}
+		<!-- 아이디가 존재시 1이 반환 -->
+	</select>
+	
+	<select id="memberLoginDao" resultType="int">
+		SELECT COUNT(*) FROM membertbl WHERE memberid = #{param1} AND memberpw= #{param2}
+		<!-- 아이디가 존재시 1이 반환 -->
+	</select>
+	
+	
+
+
+</mapper>
