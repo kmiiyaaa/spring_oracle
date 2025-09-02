@@ -73,5 +73,55 @@ public class BoardController {
 	}
 	
 	
-
+	@RequestMapping(value="/boardDelete")
+	public String boardDelete(HttpServletRequest request, Model model) {
+			
+		String bnum = request.getParameter("bnum");
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		int result = boardDao.boardDeleteDao(bnum);
+		
+		if(result ==0) { //삭제실패
+			model.addAttribute("msg", "글 삭제가 실패하였습니다. 다시 확인해주세요");
+			model.addAttribute("url","blist");
+		} else {
+			model.addAttribute("msg", "글 삭제가 완료되었습니다.");
+			model.addAttribute("url","blist");
+		}
+		
+		return "alert/alert";
+	}
+	
+	
+	@RequestMapping(value="/contentView")
+	public String contentView(HttpServletRequest request, Model model) {
+		
+		String bnum = request.getParameter("bnum");  // 유저가 클릭한 글번호
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		BoardDto boardDto = boardDao.contentViewDao(bnum);
+		
+		model.addAttribute("boardDto", boardDto);
+		
+		return "boardContent";
+	}
+	
+	@RequestMapping(value="/boardModify") //글 수정페이지에서  폼에 설정한 이름
+	public String boardModify(HttpServletRequest request, Model model) {
+		
+		String bnum = request.getParameter("bnum");
+		String btitle = request.getParameter("btitle");
+		String bcontent = request.getParameter("bcontent");
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		int result = boardDao.boardModifyDao(bnum, btitle, bcontent);
+		
+		if(result==1) { // 성공하면 1 실패하면0
+			model.addAttribute("msg", "글 수정 성공");
+			model.addAttribute("url","blist");
+		}else {
+			model.addAttribute("msg", "글 수정실패");
+			model.addAttribute("url","blist");
+		}
+		return "alert/alert";
+	}
 }

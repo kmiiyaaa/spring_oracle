@@ -19,7 +19,7 @@ public class BoardDto {
 	private String bwriter; //글쓴이 아이디
 	private int bhit;
 	//private String bdate;
-	private Timestamp bdate;
+	private Timestamp bdate; //글등록일 - 날짜타입
 	
 	//BoardDto : MemberDto -> 1:1 관계
 	private MemberDto memberDto;
