@@ -7,20 +7,18 @@
 
 	<insert id="memberJoinDao">
 		INSERT INTO membertbl(membernum, memberid, memberpw, membername)
-			VALUES(MEMBERESQ.nextval, #{param1}, #{param2}, #{param3})
+			VALUES(MEMBERSEQ.nextval , #{param1}, #{param2}, #{param3})
 	</insert>	
 	
 	<select id="memberidCheckDao" resultType="int">
-		SELECT COUNT(*) FROM membertbl WHERE memberid = #{param1}
+		SELECT COUNT(*) FROM membertbl WHERE memberid = #{param1} 
 		<!-- 아이디가 존재시 1이 반환 -->
 	</select>
 	
 	<select id="memberLoginDao" resultType="int">
-		SELECT COUNT(*) FROM membertbl WHERE memberid = #{param1} AND memberpw= #{param2}
+		SELECT COUNT(*) FROM membertbl WHERE memberid = #{param1} AND memberpw = #{param2} 
 		<!-- 아이디가 존재시 1이 반환 -->
 	</select>
 	
 	
-
-
 </mapper>

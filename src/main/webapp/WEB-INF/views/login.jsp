@@ -11,13 +11,12 @@
 	<h2>회원 로그인</h2>
 	<hr>
 	<form action="loginOk" method="post">
-		아이디 :
-		비밀번호 :
+		아이디 : <input type="text" name="memberid"><br><br>
+		비밀번호 : <input type="password" name="memberpw"><br><br>
 		<input type="submit" value="로그인">
 	</form>
-	<c:if test="${not empty error }">
-		<h3 style="color:red;">다시 가입란을 작성 해주세요</h3>
+	<c:if test="${not empty error}">
+		<h3 style="color:red;">로그인 실패! 아이디와 비밀번호를 다시 확인하시기 바랍니다.</h3>
 	</c:if>
-
 </body>
 </html>

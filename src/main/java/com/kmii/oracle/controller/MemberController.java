@@ -38,7 +38,7 @@ public class MemberController {
 		
 		MemberDao dao = sqlsession.getMapper(MemberDao.class); 
 		
-		int checkFlag = dao.memeberidCheckDao(mid);  // 아이디가 DB에 이미 존재하는지 확인 -? 존재:1 아니면0
+		int checkFlag = dao.memberidCheckDao(mid);  // 아이디가 DB에 이미 존재하는지 확인 -? 존재:1 아니면0
 		
 		if(checkFlag == 1) { // 가입하려는 아이디가 이미 존재 : 가입불가
 			model.addAttribute("msg", "이미 가입된 아이디 입니다. 다시 가입해 주세요");

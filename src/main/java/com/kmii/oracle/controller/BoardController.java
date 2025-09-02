@@ -55,10 +55,23 @@ public class BoardController {
 		
 		model.addAttribute("boardList",boardDtos);
 		
-		model.addAttribute(null, boardDtos);
+		model.addAttribute("boardCount", boardDao.AllBoardCountDao()); //모든 글 갯수 전달하기
 		
 		return "boardList";
 	}
+	
+	@RequestMapping(value="/blist2")
+	public String blist2(Model model) {
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		List<BoardDto> boardDtos = boardDao.boardListDao();
+		model.addAttribute("boardList",boardDtos);
+		
+		model.addAttribute("boardCount", boardDao.AllBoardCountDao()); //모든 글 갯수 전달하기
+		
+		return "boardList2";
+	}
+	
 	
 
 }
