@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>심플 게시판</title>
-  <link rel="stylesheet" href="resources/css/board.css">
+  
 </head>
 <body>
 
@@ -38,25 +38,13 @@
 				${board.bdate }			
 			</td>
 			<td>
-				<input type="button" value="삭제" onclick="javascript:window.location.href='boarddelete?bnum=${board.bnum}'">
+				<input type="button" value="삭제" onclick="javascript:window.location.href='boardDelete?bnum=${board.bnum}'">
 			</td>
 		</tr>
 		</c:forEach>
 		
 		<input type="button" value="글쓰기" onclick="javascript:window.location.href='bwrite'">
 
-    <!-- 페이징 -->
-    <div class="pagination">
-      <a href="#" class="first">«</a>
-      <a href="#" class="prev">‹</a>
-      <a href="#" class="page active">1</a>
-      <a href="#" class="page">2</a>
-      <a href="#" class="page">3</a>
-      <a href="#" class="page">4</a>
-      <a href="#" class="page">5</a>
-      <a href="#" class="next">›</a>
-      <a href="#" class="last">»</a>
-    </div>
   </div>
 
 </body>
