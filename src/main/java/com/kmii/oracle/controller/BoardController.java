@@ -182,5 +182,9 @@ public class BoardController {
 	}
 	
 	
+	@RequestMapping(value="/kakaoMapTest")
+	public String kakaoMapTest() {
+		return "mapTest";
+	}
 	
 }
