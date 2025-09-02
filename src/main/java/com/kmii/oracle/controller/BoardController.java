@@ -143,30 +143,30 @@ public class BoardController {
 		}  // null값이면 링크타고 들어온것 - 초기값대로 1 써주면됨 
 		
 		
-		int startRow = (pageNum * pageSize)-9; //페이징 되었을 때 시작 행의 번호 (1-1 , 2-11, 3-21,...)
-		//((pageNum-1)*pagesize)+1 도 가능
+		int startRow = (pageNum * pageSize) - 9; //페이징 되었을 때 시작 행의 번호(1->1, 2->11, 3->21...)
+		//((pageNum - 1) * pageSize) + 1
 		
-		int endRow = pageNum*pageSize; // 1-10, 2-20, 3-30,...
+		int endRow = pageNum * pageSize; //1->10, 2->20, 3->30 ...
 		
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 		List<BoardDto> boardDtos = boardDao.pageBoardListDao(startRow, endRow); //페이징 된 모든 글 가져오기(조인 테이블)
 		int totalCount = boardDao.AllBoardCountDao();
 		
-		int startPage = ((pageNum-1)/blockSize)*blockSize + 1;
-		int endPage = startPage + blockSize -1;
-		
-		int totalPage =(int) Math.ceil((double)totalCount/pageSize);
-		//전체 글 수로 만든 총 페이지수
-		
-		if(totalPage<endPage) {
-			totalPage=endPage;
-		}
-		// 실제 모든 글 갯수로 만든 총 페이지 수 ( totalpage)가 endPage보다 작을 경우 
-		// 없는 페이지 까지 출력 되므로 totalpage가 endpage보다 작을 경우 totalPage=endPage 대체
-		
+		int startPage = (((pageNum - 1)/blockSize) * blockSize) + 1;
+		//1 2 3 4 5 -> 1, 6 7 8 9 10 -> 6, 11 12 13 14 15 -> 11 ...
+		int endPage = startPage + blockSize - 1;
+		//1 2 3 4 5 -> 5, 6 7 8 9 10 -> 10, 11 12 13 14 15 -> 15 ...
+		int totalPage = (int) Math.ceil((double) totalCount / pageSize);  
+		//전체 글수로 만든 총 페이지 수 (글 153->16, 178->18, 12->2)
+		if(endPage > totalPage) {
+			endPage = totalPage;
+		}	
+		//실제 모든 글 갯수로 만든 총 페이지수(totalPage)가 endPage 보다 작을 경우
+		//없는 페이지까지 페이지 블럭에 출력되므로 totalPage가 endPage 보다 작을 경우에
+		//totalPage 값으로 endPage 값을 대체
 		
 		model.addAttribute("boardList", boardDtos);
-		model.addAttribute("pageNum",pageNum);
+		model.addAttribute("pageNum", pageNum); //유저가 클릭한 페이지 번호->현재 페이지 번호
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPage", totalPage);
@@ -174,4 +174,13 @@ public class BoardController {
 		
 		return "pageList";
 	}
+	
+	
+	@RequestMapping(value="/test")
+	public String test() {
+		return "test";
+	}
+	
+	
+	
 }

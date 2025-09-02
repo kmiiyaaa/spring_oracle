@@ -135,6 +135,8 @@
       		<c:otherwise>
       			<a href="pageList?pageNum=${i}">${i}</a>
       		</c:otherwise>      		
+      		
+      		
       	</c:choose>	
       </c:forEach>
       <c:if test="${pageNum < totalPage}">
