@@ -20,7 +20,7 @@
 		등록일 : <fmt:formatDate value="${boardDto.bdate }" pattern="yyyy-MM-dd" /><br><br>
 		<input type="hidden" name="bnum" value="${boardDto.bnum }">
 		<input type="submit" value="수정하기">
-		<input type="button" value="글목록" onclick=>
+		<input type="button" value="글목록" onclick="javascript:window.location.href='blist'">
 
 </body>
 </html>

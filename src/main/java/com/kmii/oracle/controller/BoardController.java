@@ -98,6 +98,9 @@ public class BoardController {
 		
 		String bnum = request.getParameter("bnum");  // 유저가 클릭한 글번호
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		boardDao.updateHitDao(bnum);  //조회수 증가함수 호출 
+		//메서드 호출순서 주의 -> 글보기전에 먼저 조회수 증가함수 넣어주기
+		
 		BoardDto boardDto = boardDao.contentViewDao(bnum);
 		
 		model.addAttribute("boardDto", boardDto);

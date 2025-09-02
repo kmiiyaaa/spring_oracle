@@ -69,4 +69,10 @@
 	</update>
 	
 	
+	<!-- 조회수 증가  -->
+	<update id="updateHitDao">
+		UPDATE boardtbl Set bhit=bhit+1 WHERE bnum=#{param1}
+	</update>
+	
+	
     </mapper>
