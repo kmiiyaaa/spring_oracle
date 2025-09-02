@@ -118,25 +118,29 @@
           <td><fmt:formatDate value="${board.bdate }" pattern="yyyy-MM-dd HH:mm" /></td>
         </tr>
         </c:forEach>
+        
       </tbody>
     </table>
 
     <div class="pagination">
-      <a href="#">&laquo;</a>
-      <a href="#">&lsaquo;</a>
+      <c:if test="${pageNum > 1}">	
+      <a href="pageList?pageNum=1">&laquo;</a>
+      <a href="pageList?pageNum=${pageNum-1 }">&lsaquo;</a>
+      </c:if>
       <c:forEach var="i" begin="${startPage }" end="${endPage }">
       	<c:choose>
-      		<c:when test="${i==pageNum }">
-      	 		<a href="#" class="active">${i}</a>
-      		 </c:when>
-      		 <c:otherwise>
-      		 	<a href="pageList?pageNum=${i}">${i}</a>
-      		 </c:otherwise>
-      	</c:choose>
+      		<c:when test="${i == pageNum}">
+      			<a href="#" class="active">${i}</a>
+      		</c:when>
+      		<c:otherwise>
+      			<a href="pageList?pageNum=${i}">${i}</a>
+      		</c:otherwise>      		
+      	</c:choose>	
       </c:forEach>
-   
-      <a href="#">&rsaquo;</a>
-      <a href="#">&raquo;</a>
+      <c:if test="${pageNum < totalPage}">
+      <a href="pageList?pageNum=${pageNum+1 }">&rsaquo;</a>
+      <a href="pageList?pageNum=${totalPage }">&raquo;</a>
+      </c:if>
     </div>
   </div>
 

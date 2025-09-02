@@ -161,14 +161,15 @@ public class BoardController {
 		if(totalPage<endPage) {
 			totalPage=endPage;
 		}
-		
+		// 실제 모든 글 갯수로 만든 총 페이지 수 ( totalpage)가 endPage보다 작을 경우 
+		// 없는 페이지 까지 출력 되므로 totalpage가 endpage보다 작을 경우 totalPage=endPage 대체
 		
 		
 		model.addAttribute("boardList", boardDtos);
 		model.addAttribute("pageNum",pageNum);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		
+		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("boardCount", totalCount); //모든 글 갯수 전달하기
 		
 		return "pageList";
